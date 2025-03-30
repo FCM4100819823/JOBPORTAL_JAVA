@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox styleClass="job-card" spacing="15" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15" />
+    </padding>
+    
+    <!-- Job Title and Status -->
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <VBox spacing="3" HBox.hgrow="ALWAYS">
+            <Text fx:id="jobTitleText" styleClass="job-title" text="Software Developer" />
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <HBox alignment="CENTER_LEFT" spacing="5">
+                    <FontIcon iconLiteral="fas-building" iconSize="12" />
+                    <Text fx:id="companyText" styleClass="job-company" text="Tech Company Inc." />
+                </HBox>
+                
+                <HBox alignment="CENTER_LEFT" spacing="5">
+                    <FontIcon iconLiteral="fas-map-marker-alt" iconSize="12" />
+                    <Text fx:id="locationText" styleClass="job-location" text="New York, NY" />
+                </HBox>
+            </HBox>
+        </VBox>
+        
+        <Label fx:id="statusLabel" styleClass="application-status-badge" text="Applied" />
+    </HBox>
+    
+    <Separator />
+    
+    <!-- Application Details -->
+    <HBox spacing="30">
+        <VBox spacing="5">
+            <Text styleClass="application-detail-label" text="Application Date" />
+            <Text fx:id="applicationDateText" text="Aug 15, 2023" />
+        </VBox>
+        
+        <VBox spacing="5">
+            <Text styleClass="application-detail-label" text="Last Updated" />
+            <Text fx:id="lastUpdatedText" text="Aug 15, 2023" />
+        </VBox>
+        
+        <VBox spacing="5">
+            <Text styleClass="application-detail-label" text="Resume" />
+            <Hyperlink fx:id="viewResumeLink" text="View Resume" onAction="#onViewResumeClick" />
+        </VBox>
+    </HBox>
+    
+    <!-- Action Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="withdrawButton" text="Withdraw Application" styleClass="button-outlined" onAction="#onWithdrawClick" />
+        <Button fx:id="viewJobButton" text="View Job" styleClass="button-outlined" onAction="#onViewJobClick" />
+        <Button fx:id="viewDetailsButton" text="View Details" onAction="#onViewDetailsClick" />
+    </HBox>
+</VBox>

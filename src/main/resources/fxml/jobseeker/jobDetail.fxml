@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<ScrollPane fitToWidth="true" styleClass="dashboard-content" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jobportal.controllers.jobseeker.JobDetailController">
+    <VBox spacing="20">
+        <padding>
+            <Insets top="10" right="20" bottom="20" left="20" />
+        </padding>
+        
+        <!-- Back Button -->
+        <HBox alignment="CENTER_LEFT" spacing="5">
+            <Button styleClass="button-link" onAction="#onBackButtonClick">
+                <graphic>
+                    <HBox alignment="CENTER" spacing="5">
+                        <FontIcon iconLiteral="fas-arrow-left" />
+                        <Label text="Back to Browse Jobs" />
+                    </HBox>
+                </graphic>
+            </Button>
+        </HBox>
+        
+        <!-- Job Header -->
+        <VBox styleClass="dashboard-card" spacing="15">
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <VBox HBox.hgrow="ALWAYS">
+                    <Text fx:id="jobTitleText" styleClass="job-detail-title" text="Software Developer" />
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Text fx:id="companyText" styleClass="job-company" text="Tech Company Inc." />
+                        <Text fx:id="locationText" styleClass="job-location" text="New York, NY" />
+                    </HBox>
+                </VBox>
+                
+                <Button fx:id="saveButton" text="Save Job" styleClass="button-outlined" />
+                <Button fx:id="applyButton" text="Apply Now" styleClass="button-secondary" />
+            </HBox>
+            
+            <!-- Job Stats -->
+            <HBox spacing="20" styleClass="job-quick-info">
+                <VBox styleClass="quick-info-item">
+                    <Text styleClass="quick-info-label" text="Posted On" />
+                    <Text fx:id="postedDateText" text="Jun 15, 2023" />
+                </VBox>
+                
+                <VBox styleClass="quick-info-item">
+                    <Text styleClass="quick-info-label" text="Salary" />
+                    <Text fx:id="salaryText" text="$50,000 - $70,000" />
+                </VBox>
+                
+                <VBox styleClass="quick-info-item">
+                    <Text styleClass="quick-info-label" text="Job Type" />
+                    <Text fx:id="jobTypeText" text="Full-time" />
+                </VBox>
+                
+                <VBox styleClass="quick-info-item">
+                    <Text styleClass="quick-info-label" text="Experience Level" />
+                    <Text fx:id="experienceLevelText" text="Mid-Level" />
+                </VBox>
+            </HBox>
+        </VBox>
+        
+        <!-- Job Description -->
+        <VBox styleClass="dashboard-card" spacing="15">
+            <Text styleClass="section-header" text="Job Description" />
+            <TextFlow fx:id="descriptionTextFlow" styleClass="job-description" />
+        </VBox>
+        
+        <!-- Required Skills -->
+        <VBox styleClass="dashboard-card" spacing="15" fx:id="skillsContainer" visible="false" managed="false">
+            <Text styleClass="section-header" text="Required Skills" />
+            <FlowPane fx:id="skillsFlowPane" hgap="10" vgap="10" />
+        </VBox>
+        
+        <!-- Application Instructions -->
+        <VBox styleClass="dashboard-card" spacing="15" fx:id="instructionsContainer" visible="false" managed="false">
+            <Text styleClass="section-header" text="Application Instructions" />
+            <TextFlow fx:id="instructionsTextFlow" styleClass="job-description" />
+        </VBox>
+    </VBox>
+</ScrollPane>

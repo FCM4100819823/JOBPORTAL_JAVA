@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox styleClass="job-card" spacing="15" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15" />
+    </padding>
+    
+    <!-- Job Title and Remove Button -->
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Text fx:id="jobTitleText" styleClass="job-title" text="Software Developer" HBox.hgrow="ALWAYS" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button fx:id="removeButton" styleClass="button-outlined" minWidth="30" prefWidth="30" maxWidth="30"
+                minHeight="30" prefHeight="30" maxHeight="30">
+            <graphic>
+                <FontIcon iconLiteral="fas-times" />
+            </graphic>
+        </Button>
+    </HBox>
+    
+    <!-- Company and Location -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <HBox alignment="CENTER_LEFT" spacing="5">
+            <FontIcon iconLiteral="fas-building" />
+            <Text fx:id="companyText" styleClass="job-company" text="Tech Company Inc." />
+        </HBox>
+        
+        <HBox alignment="CENTER_LEFT" spacing="5">
+            <FontIcon iconLiteral="fas-map-marker-alt" />
+            <Text fx:id="locationText" styleClass="job-location" text="New York, NY" />
+        </HBox>
+    </HBox>
+    
+    <!-- Salary and Employment Type -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <HBox alignment="CENTER_LEFT" spacing="5" fx:id="salaryContainer">
+            <FontIcon iconLiteral="fas-money-bill-wave" />
+            <Text fx:id="salaryText" styleClass="job-salary" text="$50,000 - $70,000" />
+        </HBox>
+        
+        <HBox alignment="CENTER_LEFT" spacing="5">
+            <FontIcon iconLiteral="fas-clock" />
+            <Text fx:id="jobTypeText" styleClass="job-type" text="Full-time" />
+        </HBox>
+    </HBox>
+    
+    <!-- Saved Date and Action Buttons -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <HBox alignment="CENTER_LEFT" spacing="5">
+            <FontIcon iconLiteral="fas-calendar-alt" />
+            <Text fx:id="savedDateText" styleClass="job-posted-date" text="Saved on Jun 15, 2023" />
+        </HBox>
+        
+        <Region HBox.hgrow="ALWAYS" />
+        
+        <Button fx:id="viewDetailsButton" text="View Details" styleClass="button-outlined" />
+        <Button fx:id="applyButton" text="Apply Now" />
+    </HBox>
+</VBox>

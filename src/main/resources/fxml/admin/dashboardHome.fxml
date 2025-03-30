@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<ScrollPane fitToWidth="true" styleClass="dashboard-content" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jobportal.controllers.admin.AdminHomeController">
+    <VBox spacing="20">
+        <padding>
+            <Insets top="10" right="10" bottom="20" left="10" />
+        </padding>
+        
+        <!-- Welcome Section -->
+        <HBox styleClass="dashboard-card">
+            <VBox spacing="5">
+                <Text styleClass="label-header" text="Welcome to Admin Dashboard" />
+                <Text fx:id="welcomeMessage" text="Here's an overview of the platform activities" />
+            </VBox>
+        </HBox>
+        
+        <!-- Quick Actions -->
+        <HBox spacing="15">
+            <Button text="Manage Users" onAction="#onManageUsersClick" styleClass="button-secondary">
+                <graphic>
+                    <FontIcon iconLiteral="fas-users" />
+                </graphic>
+            </Button>
+            
+            <Button text="Review Jobs" onAction="#onReviewJobsClick" styleClass="button-outlined">
+                <graphic>
+                    <FontIcon iconLiteral="fas-briefcase" />
+                </graphic>
+            </Button>
+            
+            <Button text="View Analytics" onAction="#onViewAnalyticsClick" styleClass="button-outlined">
+                <graphic>
+                    <FontIcon iconLiteral="fas-chart-bar" />
+                </graphic>
+            </Button>
+        </HBox>
+        
+        <!-- Stats Row -->
+        <GridPane hgap="15" vgap="15">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="25" />
+                <ColumnConstraints percentWidth="25" />
+                <ColumnConstraints percentWidth="25" />
+                <ColumnConstraints percentWidth="25" />
+            </columnConstraints>
+            
+            <!-- Total Users Card -->
+            <VBox styleClass="dashboard-card" GridPane.columnIndex="0">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <StackPane styleClass="stats-icon-container">
+                        <FontIcon iconLiteral="fas-users" iconSize="20" />
+                    </StackPane>
+                    <VBox>
+                        <Text fx:id="totalUsersCount" styleClass="stats-value" text="0" />
+                        <Text styleClass="stats-label" text="Total Users" />
+                    </VBox>
+                </HBox>
+            </VBox>
+            
+            <!-- Jobs Posted Card -->
+            <VBox styleClass="dashboard-card" GridPane.columnIndex="1">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <StackPane styleClass="stats-icon-container">
+                        <FontIcon iconLiteral="fas-briefcase" iconSize="20" />
+                    </StackPane>
+                    <VBox>
+                        <Text fx:id="totalJobsCount" styleClass="stats-value" text="0" />
+                        <Text styleClass="stats-label" text="Total Jobs" />
+                    </VBox>
+                </HBox>
+            </VBox>
+            
+            <!-- Applications Card -->
+            <VBox styleClass="dashboard-card" GridPane.columnIndex="2">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <StackPane styleClass="stats-icon-container">
+                        <FontIcon iconLiteral="fas-file-alt" iconSize="20" />
+                    </StackPane>
+                    <VBox>
+                        <Text fx:id="totalApplicationsCount" styleClass="stats-value" text="0" />
+                        <Text styleClass="stats-label" text="Applications" />
+                    </VBox>
+                </HBox>
+            </VBox>
+            
+            <!-- New Users Card -->
+            <VBox styleClass="dashboard-card" GridPane.columnIndex="3">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <StackPane styleClass="stats-icon-container">
+                        <FontIcon iconLiteral="fas-user-plus" iconSize="20" />
+                    </StackPane>
+                    <VBox>
+                        <Text fx:id="newUsersCount" styleClass="stats-value" text="0" />
+                        <Text styleClass="stats-label" text="New Users (24h)" />
+                    </VBox>
+                </HBox>
+            </VBox>
+        </GridPane>
+        
+        <!-- Recent Users Section -->
+        <VBox styleClass="dashboard-card" spacing="15">
+            <HBox alignment="CENTER_LEFT">
+                <Text styleClass="label-subheader" text="Recent Users" HBox.hgrow="ALWAYS" />
+                <Button text="View All" onAction="#onViewAllUsersClick" styleClass="button-outlined" />
+            </HBox>
+            
+            <TableView fx:id="recentUsersTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="userIdColumn" text="ID" prefWidth="60" />
+                    <TableColumn fx:id="usernameColumn" text="Username" prefWidth="120" />
+                    <TableColumn fx:id="fullNameColumn" text="Full Name" prefWidth="150" />
+                    <TableColumn fx:id="emailColumn" text="Email" prefWidth="200" />
+                    <TableColumn fx:id="roleColumn" text="Role" prefWidth="100" />
+                    <TableColumn fx:id="registrationDateColumn" text="Registration Date" prefWidth="150" />
+                </columns>
+            </TableView>
+        </VBox>
+        
+        <!-- Recent Jobs Section -->
+        <VBox styleClass="dashboard-card" spacing="15">
+            <HBox alignment="CENTER_LEFT">
+                <Text styleClass="label-subheader" text="Recent Jobs" HBox.hgrow="ALWAYS" />
+                <Button text="View All" onAction="#onViewAllJobsClick" styleClass="button-outlined" />
+            </HBox>
+            
+            <TableView fx:id="recentJobsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="jobIdColumn" text="ID" prefWidth="60" />
+                    <TableColumn fx:id="jobTitleColumn" text="Title" prefWidth="200" />
+                    <TableColumn fx:id="companyColumn" text="Company" prefWidth="150" />
+                    <TableColumn fx:id="locationColumn" text="Location" prefWidth="150" />
+                    <TableColumn fx:id="postDateColumn" text="Post Date" prefWidth="120" />
+                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="100" />
+                </columns>
+            </TableView>
+        </VBox>
+    </VBox>
+</ScrollPane>

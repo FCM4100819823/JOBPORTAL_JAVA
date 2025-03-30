@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<VBox spacing="15" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+    
+    <Text styleClass="dialog-header" text="Add Education" fx:id="dialogTitle" />
+    
+    <VBox spacing="10">
+        <!-- Institution Name -->
+        <VBox spacing="5">
+            <Label text="Institution Name *" />
+            <TextField fx:id="institutionField" promptText="School or university name" />
+        </VBox>
+        
+        <!-- Degree -->
+        <VBox spacing="5">
+            <Label text="Degree *" />
+            <TextField fx:id="degreeField" promptText="e.g., Bachelor of Science, High School Diploma" />
+        </VBox>
+        
+        <!-- Field of Study -->
+        <VBox spacing="5">
+            <Label text="Field of Study" />
+            <TextField fx:id="fieldOfStudyField" promptText="e.g., Computer Science, Business" />
+        </VBox>
+        
+        <!-- Dates -->
+        <HBox spacing="10">
+            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                <Label text="Start Date *" />
+                <DatePicker fx:id="startDatePicker" promptText="Select date" />
+            </VBox>
+            
+            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                <Label text="End Date" />
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <DatePicker fx:id="endDatePicker" promptText="Select date" HBox.hgrow="ALWAYS" />
+                    <CheckBox fx:id="currentlyStudyingCheckbox" text="Currently Studying" />
+                </HBox>
+            </VBox>
+        </HBox>
+        
+        <!-- GPA -->
+        <VBox spacing="5">
+            <Label text="GPA" />
+            <TextField fx:id="gpaField" promptText="e.g., 3.8/4.0" />
+        </VBox>
+        
+        <!-- Description -->
+        <VBox spacing="5">
+            <Label text="Description" />
+            <TextArea fx:id="descriptionField" promptText="Additional information about your education" wrapText="true" prefRowCount="3" />
+        </VBox>
+    </VBox>
+    
+    <!-- Error message -->
+    <Text fx:id="errorText" styleClass="error-text" visible="false" />
+    
+    <!-- Buttons -->
+    <HBox alignment="CENTER_RIGHT" spacing="10">
+        <Button fx:id="cancelButton" text="Cancel" styleClass="button-outlined" />
+        <Button fx:id="saveButton" text="Save" styleClass="button-secondary" />
+    </HBox>
+</VBox>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<ScrollPane fitToWidth="true" styleClass="dashboard-content" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jobportal.controllers.jobseeker.JobApplicationController">
+    <VBox spacing="20">
+        <padding>
+            <Insets top="10" right="20" bottom="20" left="20" />
+        </padding>
+        
+        <!-- Back Link -->
+        <HBox alignment="CENTER_LEFT" spacing="5">
+            <Button styleClass="button-link" onAction="#onBackButtonClick">
+                <graphic>
+                    <HBox alignment="CENTER" spacing="5">
+                        <FontIcon iconLiteral="fas-arrow-left" />
+                        <Label text="Back to job details" />
+                    </HBox>
+                </graphic>
+            </Button>
+        </HBox>
+        
+        <!-- Application Form -->
+        <VBox styleClass="job-detail-card" spacing="20">
+            <Text styleClass="job-detail-title" text="Apply for Position" />
+            <Text fx:id="jobTitleText" styleClass="job-company" text="Software Developer at Tech Company Inc." />
+            
+            <!-- Application Form -->
+            <VBox spacing="20">
+                <!-- Contact Information Section -->
+                <VBox spacing="15">
+                    <Text styleClass="section-header" text="Contact Information" />
+                    
+                    <GridPane hgap="15" vgap="15">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="50" />
+                            <ColumnConstraints percentWidth="50" />
+                        </columnConstraints>
+                        
+                        <!-- Full Name -->
+                        <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                            <Label text="Full Name *" />
+                            <TextField fx:id="fullNameField" promptText="Enter your full name" />
+                        </VBox>
+                        
+                        <!-- Email -->
+                        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                            <Label text="Email Address *" />
+                            <TextField fx:id="emailField" promptText="Enter your email address" />
+                        </VBox>
+                        
+                        <!-- Phone -->
+                        <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                            <Label text="Phone Number *" />
+                            <TextField fx:id="phoneField" promptText="Enter your phone number" />
+                        </VBox>
+                        
+                        <!-- Location -->
+                        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <Label text="Location" />
+                            <TextField fx:id="locationField" promptText="City, State/Province, Country" />
+                        </VBox>
+                    </GridPane>
+                </VBox>
+                
+                <!-- Resume/CV Section -->
+                <VBox spacing="15">
+                    <Text styleClass="section-header" text="Resume/CV" />
+                    
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Button fx:id="uploadResumeButton" text="Upload Resume" onAction="#onUploadResumeClick" styleClass="button-outlined" />
+                        <Label fx:id="resumeFileNameLabel" text="No file selected" wrapText="true" />
+                    </HBox>
+                    
+                    <Text styleClass="form-info-text" text="Accepted file formats: PDF, DOC, DOCX. Maximum file size: 5MB." />
+                </VBox>
+                
+                <!-- Cover Letter Section -->
+                <VBox spacing="15">
+                    <Text styleClass="section-header" text="Cover Letter (Optional)" />
+                    
+                    <TextArea fx:id="coverLetterTextArea" promptText="Tell us why you're a good fit for this position..." prefRowCount="8" wrapText="true" />
+                </VBox>
+                
+                <!-- Additional Questions Section -->
+                <VBox spacing="15" fx:id="additionalQuestionsContainer">
+                    <Text styleClass="section-header" text="Additional Questions" />
+                    
+                    <!-- Additional questions will be added here dynamically based on the job -->
+                </VBox>
+                
+                <!-- Consent Section -->
+                <VBox spacing="10">
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <CheckBox fx:id="consentCheckbox" />
+                        <Text styleClass="consent-text" text="I consent to my data being processed and stored for recruiting purposes according to the Privacy Policy." wrappingWidth="600" />
+                    </HBox>
+                </VBox>
+                
+                <!-- Error Message -->
+                <Text fx:id="errorText" styleClass="error-text" visible="false" text="Please correct the errors above to submit your application." />
+            </VBox>
+            
+            <!-- Submit Button -->
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <Button fx:id="cancelButton" text="Cancel" onAction="#onCancelButtonClick" styleClass="button-outlined" />
+                <Button fx:id="submitButton" text="Submit Application" onAction="#onSubmitButtonClick" styleClass="button-secondary" />
+            </HBox>
+        </VBox>
+    </VBox>
+</ScrollPane>

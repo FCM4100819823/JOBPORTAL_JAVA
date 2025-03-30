@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane styleClass="dashboard-content" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jobportal.controllers.admin.JobManagementController">
+    
+    <!-- Top Header -->
+    <top>
+        <VBox spacing="15" styleClass="dashboard-card">
+            <padding>
+                <Insets top="15" right="20" bottom="15" left="20" />
+            </padding>
+            
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Text styleClass="label-header" text="Job Listings" />
+                <Region HBox.hgrow="ALWAYS" />
+                
+                <!-- Search and Filter -->
+                <HBox spacing="10" alignment="CENTER" HBox.hgrow="ALWAYS" maxWidth="600">
+                    <TextField fx:id="searchField" promptText="Search by title, company, or location" HBox.hgrow="ALWAYS" />
+                    <ComboBox fx:id="statusFilterComboBox" promptText="Filter by Status" />
+                    <Button fx:id="searchButton" styleClass="button-secondary" onAction="#onSearchButtonClick">
+                        <graphic>
+                            <FontIcon iconLiteral="fas-search" />
+                        </graphic>
+                    </Button>
+                </HBox>
+            </HBox>
+            
+            <Text styleClass="label" text="View and manage all job listings on the platform" />
+        </VBox>
+    </top>
+    
+    <!-- Jobs Table -->
+    <center>
+        <VBox spacing="15" styleClass="dashboard-card">
+            <TableView fx:id="jobsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="jobIdColumn" text="ID" prefWidth="60" />
+                    <TableColumn fx:id="titleColumn" text="Title" prefWidth="200" />
+                    <TableColumn fx:id="companyColumn" text="Company" prefWidth="150" />
+                    <TableColumn fx:id="locationColumn" text="Location" prefWidth="150" />
+                    <TableColumn fx:id="typeColumn" text="Type" prefWidth="100" />
+                    <TableColumn fx:id="employerColumn" text="Employer" prefWidth="150" />
+                    <TableColumn fx:id="postedDateColumn" text="Posted Date" prefWidth="120" />
+                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="100" />
+                    <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="120" />
+                </columns>
+            </TableView>
+            
+            <!-- Pagination -->
+            <HBox alignment="CENTER">
+                <Pagination fx:id="jobsPagination" pageCount="10" />
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

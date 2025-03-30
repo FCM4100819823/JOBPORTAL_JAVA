@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.jobportal.controllers.jobseeker.MyApplicationsController"
+            styleClass="dashboard-content">
+    
+    <!-- Top Header -->
+    <top>
+        <VBox spacing="15" styleClass="dashboard-card">
+            <padding>
+                <Insets top="15" right="20" bottom="15" left="20" />
+            </padding>
+            
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Text styleClass="label-header" text="My Applications" />
+                <Region HBox.hgrow="ALWAYS" />
+                
+                <!-- Filter/Sort Options -->
+                <ComboBox fx:id="statusFilterComboBox" promptText="Filter by Status" />
+                <ComboBox fx:id="sortComboBox" promptText="Sort by" />
+            </HBox>
+            
+            <Text styleClass="label" text="Track and manage your job applications" />
+        </VBox>
+    </top>
+    
+    <!-- Applications List -->
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="transparent-background">
+            <VBox spacing="15" fx:id="applicationsContainer">
+                <padding>
+                    <Insets top="15" right="20" bottom="15" left="20" />
+                </padding>
+                
+                <!-- Loading indicator -->
+                <StackPane fx:id="loadingPane" managed="false" visible="false">
+                    <ProgressIndicator />
+                </StackPane>
+                
+                <!-- Empty state -->
+                <VBox fx:id="emptyStatePane" alignment="CENTER" spacing="15" managed="false" visible="false">
+                    <padding>
+                        <Insets top="40" bottom="40" />
+                    </padding>
+                    <FontIcon iconLiteral="far-clipboard" iconSize="48" />
+                    <Text styleClass="label-subheader" text="No applications yet" />
+                    <Text text="You haven't applied to any jobs yet. Start browsing jobs and submit your first application!" textAlignment="CENTER" wrappingWidth="500" />
+                    <Button text="Browse Jobs" onAction="#onBrowseJobsClick" styleClass="button-outlined" />
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

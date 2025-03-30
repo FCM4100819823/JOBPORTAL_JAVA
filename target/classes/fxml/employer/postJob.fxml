@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<ScrollPane fitToWidth="true" styleClass="dashboard-content" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jobportal.controllers.employer.PostJobController">
+    <VBox spacing="20">
+        <padding>
+            <Insets top="10" right="20" bottom="20" left="20" />
+        </padding>
+        
+        <!-- Post Job Form -->
+        <VBox styleClass="dashboard-card" spacing="20">
+            <Text styleClass="label-header" text="Post a New Job" />
+            <Text styleClass="label" text="Fill out the form below to post a new job opening" />
+            
+            <Text fx:id="errorText" styleClass="error-text" visible="false" />
+            <Text fx:id="successText" styleClass="success-text" visible="false" />
+            
+            <!-- Job Details Section -->
+            <VBox spacing="15">
+                <Text styleClass="section-header" text="Job Details" />
+                
+                <!-- Job Title -->
+                <VBox spacing="5">
+                    <Label text="Job Title *" />
+                    <TextField fx:id="jobTitleField" promptText="e.g., Software Engineer, Marketing Manager" />
+                </VBox>
+                
+                <GridPane hgap="15" vgap="15">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50" />
+                        <ColumnConstraints percentWidth="50" />
+                    </columnConstraints>
+                    
+                    <!-- Company Name -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="Company Name *" />
+                        <TextField fx:id="companyField" promptText="Your company name" />
+                    </VBox>
+                    
+                    <!-- Location -->
+                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Label text="Location *" />
+                        <TextField fx:id="locationField" promptText="e.g., New York, NY or Remote" />
+                    </VBox>
+                    
+                    <!-- Employment Type -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Label text="Employment Type *" />
+                        <ComboBox fx:id="employmentTypeComboBox" promptText="Select employment type" maxWidth="Infinity">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Full-time" />
+                                    <String fx:value="Part-time" />
+                                    <String fx:value="Contract" />
+                                    <String fx:value="Temporary" />
+                                    <String fx:value="Internship" />
+                                    <String fx:value="Freelance" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                    </VBox>
+                    
+                    <!-- Experience Level -->
+                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label text="Experience Level *" />
+                        <ComboBox fx:id="experienceLevelComboBox" promptText="Select experience level" maxWidth="Infinity">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Entry Level" />
+                                    <String fx:value="Junior" />
+                                    <String fx:value="Mid-Level" />
+                                    <String fx:value="Senior" />
+                                    <String fx:value="Lead" />
+                                    <String fx:value="Manager" />
+                                    <String fx:value="Director" />
+                                    <String fx:value="Executive" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                    </VBox>
+                    
+                    <!-- Salary Range -->
+                    <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                        <Label text="Salary Range" />
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <ComboBox fx:id="currencyComboBox" promptText="$" prefWidth="60">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <String fx:value="$" />
+                                        <String fx:value="€" />
+                                        <String fx:value="£" />
+                                        <String fx:value="¥" />
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+                            <TextField fx:id="minSalaryField" promptText="Min" HBox.hgrow="ALWAYS" />
+                            <Label text="-" />
+                            <TextField fx:id="maxSalaryField" promptText="Max" HBox.hgrow="ALWAYS" />
+                        </HBox>
+                    </VBox>
+                    
+                    <!-- Number of Positions -->
+                    <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label text="Number of Positions" />
+                        <TextField fx:id="positionsField" promptText="e.g., 1, 2, 3" />
+                    </VBox>
+                </GridPane>
+                
+                <!-- Job Description -->
+                <VBox spacing="5">
+                    <Label text="Job Description *" />
+                    <TextArea fx:id="descriptionField" promptText="Detailed job description, responsibilities, and requirements" wrapText="true" prefRowCount="10" />
+                </VBox>
+                
+                <!-- Skills -->
+                <VBox spacing="10">
+                    <Label text="Required Skills" />
+                    <FlowPane fx:id="skillsContainer" hgap="10" vgap="10">
+                        <!-- Skills will be added here dynamically -->
+                    </FlowPane>
+                    
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <TextField fx:id="newSkillField" promptText="Add a skill (e.g., JavaScript, Project Management)" HBox.hgrow="ALWAYS" />
+                        <Button text="Add" onAction="#onAddSkillClick" styleClass="button-outlined" />
+                    </HBox>
+                </VBox>
+                
+                <!-- Application Instructions -->
+                <VBox spacing="5">
+                    <Label text="Application Instructions (Optional)" />
+                    <TextArea fx:id="applicationInstructionsField" promptText="Special instructions for applicants" wrapText="true" prefRowCount="3" />
+                </VBox>
+                
+                <!-- Application Deadline -->
+                <VBox spacing="5">
+                    <Label text="Application Deadline (Optional)" />
+                    <DatePicker fx:id="deadlinePicker" promptText="Select date" />
+                </VBox>
+            </VBox>
+            
+            <!-- Submit Buttons -->
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <Button fx:id="clearButton" text="Clear Form" onAction="#onClearButtonClick" styleClass="button-outlined" />
+                <Button fx:id="previewButton" text="Preview" onAction="#onPreviewButtonClick" styleClass="button-outlined" />
+                <Button fx:id="submitButton" text="Post Job" onAction="#onSubmitButtonClick" styleClass="button-secondary" />
+            </HBox>
+        </VBox>
+    </VBox>
+</ScrollPane>

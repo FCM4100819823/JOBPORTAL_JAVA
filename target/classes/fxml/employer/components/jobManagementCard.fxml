@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox styleClass="job-card" spacing="15" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15" />
+    </padding>
+    
+    <!-- Job Title and Status -->
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <VBox spacing="3" HBox.hgrow="ALWAYS">
+            <Text fx:id="jobTitleText" styleClass="job-title" text="Software Developer" />
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <HBox alignment="CENTER_LEFT" spacing="5">
+                    <FontIcon iconLiteral="fas-building" iconSize="12" />
+                    <Text fx:id="companyText" styleClass="job-company" text="Tech Company Inc." />
+                </HBox>
+                
+                <HBox alignment="CENTER_LEFT" spacing="5">
+                    <FontIcon iconLiteral="fas-map-marker-alt" iconSize="12" />
+                    <Text fx:id="locationText" styleClass="job-location" text="New York, NY" />
+                </HBox>
+            </HBox>
+        </VBox>
+        
+        <Label fx:id="statusLabel" styleClass="job-status-badge, status-active" text="Active" />
+    </HBox>
+    
+    <!-- Job Stats -->
+    <HBox spacing="30">
+        <VBox spacing="5">
+            <Text styleClass="job-stat-label" text="Posted On" />
+            <Text fx:id="postedDateText" text="Jun 15, 2023" />
+        </VBox>
+        
+        <VBox spacing="5" fx:id="deadlineContainer">
+            <Text styleClass="job-stat-label" text="Deadline" />
+            <Text fx:id="deadlineText" text="Jul 15, 2023" />
+        </VBox>
+        
+        <VBox spacing="5">
+            <Text styleClass="job-stat-label" text="Views" />
+            <Text fx:id="viewsText" text="245" />
+        </VBox>
+        
+        <VBox spacing="5">
+            <Text styleClass="job-stat-label" text="Applications" />
+            <Text fx:id="applicationsText" text="18" />
+        </VBox>
+    </HBox>
+    
+    <!-- Action Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <ToggleButton fx:id="activeToggle" text="Deactivate Job" styleClass="button-outlined" />
+        <Button fx:id="viewApplicationsButton" text="View Applications" styleClass="button-outlined" />
+        <Button fx:id="editButton" text="Edit Job" styleClass="button-outlined" />
+        <Button fx:id="deleteButton" text="Delete" styleClass="button-outlined, button-danger" />
+    </HBox>
+</VBox>

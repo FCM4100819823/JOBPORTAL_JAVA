@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<HBox styleClass="job-card" spacing="10" alignment="CENTER_LEFT" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="10" right="15" bottom="10" left="15" />
+    </padding>
+    
+    <!-- Job Icon -->
+    <StackPane styleClass="company-logo-container" minWidth="40" minHeight="40" maxWidth="40" maxHeight="40">
+        <FontIcon iconLiteral="fas-briefcase" iconSize="16" />
+    </StackPane>
+    
+    <!-- Job Info -->
+    <VBox spacing="2" HBox.hgrow="ALWAYS">
+        <Text fx:id="jobTitleText" styleClass="job-title" text="Job Title" />
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <FontIcon iconLiteral="fas-building" iconSize="12" />
+                <Text fx:id="companyText" styleClass="job-company" text="Company Name" />
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <FontIcon iconLiteral="fas-map-marker-alt" iconSize="12" />
+                <Text fx:id="locationText" styleClass="job-location" text="Location" />
+            </HBox>
+        </HBox>
+    </VBox>
+    
+    <!-- View Details Button -->
+    <Button fx:id="viewDetailsButton" text="View Details" styleClass="button-outlined" />
+</HBox>

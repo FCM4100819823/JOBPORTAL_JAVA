@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox styleClass="job-card" spacing="15" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15" />
+    </padding>
+    
+    <!-- Header with Name, Job and Status -->
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <VBox spacing="3" HBox.hgrow="ALWAYS">
+            <Text fx:id="applicantNameText" styleClass="job-title" text="John Doe" />
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <HBox alignment="CENTER_LEFT" spacing="5">
+                    <FontIcon iconLiteral="fas-briefcase" iconSize="12" />
+                    <Text fx:id="jobTitleText" styleClass="job-company" text="Software Developer" />
+                </HBox>
+                
+                <HBox alignment="CENTER_LEFT" spacing="5">
+                    <FontIcon iconLiteral="fas-envelope" iconSize="12" />
+                    <Text fx:id="emailText" styleClass="job-location" text="john.doe@example.com" />
+                </HBox>
+            </HBox>
+        </VBox>
+        
+        <Label fx:id="statusLabel" styleClass="application-status-badge, status-submitted" text="Submitted" />
+    </HBox>
+    
+    <!-- Application Details -->
+    <HBox spacing="20">
+        <VBox spacing="5">
+            <Text styleClass="application-detail-label" text="Application Date" />
+            <Text fx:id="applicationDateText" text="Aug 15, 2023" />
+        </VBox>
+        
+        <VBox spacing="5">
+            <Text styleClass="application-detail-label" text="Location" />
+            <Text fx:id="locationText" text="New York, NY" />
+        </VBox>
+        
+        <VBox spacing="5">
+            <Text styleClass="application-detail-label" text="Phone" />
+            <Text fx:id="phoneText" text="(123) 456-7890" />
+        </VBox>
+        
+        <VBox spacing="5">
+            <Text styleClass="application-detail-label" text="Resume" />
+            <Hyperlink fx:id="viewResumeLink" text="View Resume" />
+        </VBox>
+    </HBox>
+    
+    <!-- Action Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <MenuButton fx:id="updateStatusButton" text="Update Status" styleClass="button-outlined">
+            <items>
+                <MenuItem fx:id="underReviewMenuItem" text="Mark Under Review" />
+                <MenuItem fx:id="scheduleInterviewMenuItem" text="Schedule Interview" />
+                <MenuItem fx:id="makeOfferMenuItem" text="Make Offer" />
+                <MenuItem fx:id="rejectMenuItem" text="Reject" />
+            </items>
+        </MenuButton>
+        <Button fx:id="viewDetailsButton" text="View Details" />
+    </HBox>
+</VBox>

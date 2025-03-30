@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox styleClass="job-card" spacing="10" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15" />
+    </padding>
+    
+    <!-- Job Title and Save Button -->
+    <HBox alignment="CENTER_LEFT">
+        <Text fx:id="jobTitleText" styleClass="job-title" text="Job Title" HBox.hgrow="ALWAYS" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button fx:id="saveJobButton" styleClass="button-outlined" minWidth="30" prefWidth="30" maxWidth="30"
+                minHeight="30" prefHeight="30" maxHeight="30">
+            <graphic>
+                <FontIcon fx:id="saveIcon" iconLiteral="far-bookmark" />
+            </graphic>
+        </Button>
+    </HBox>
+    
+    <!-- Company and Location -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <HBox alignment="CENTER_LEFT" spacing="5">
+            <FontIcon iconLiteral="fas-building" />
+            <Text fx:id="companyText" styleClass="job-company" text="Company Name" />
+        </HBox>
+        
+        <HBox alignment="CENTER_LEFT" spacing="5">
+            <FontIcon iconLiteral="fas-map-marker-alt" />
+            <Text fx:id="locationText" styleClass="job-location" text="Location" />
+        </HBox>
+    </HBox>
+    
+    <!-- Salary and Employment Type -->
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <HBox alignment="CENTER_LEFT" spacing="5" fx:id="salaryContainer">
+            <FontIcon iconLiteral="fas-money-bill-wave" />
+            <Text fx:id="salaryText" styleClass="job-salary" text="$50,000 - $70,000" />
+        </HBox>
+        
+        <HBox alignment="CENTER_LEFT" spacing="5">
+            <FontIcon iconLiteral="fas-clock" />
+            <Text fx:id="jobTypeText" styleClass="job-type" text="Full-time" />
+        </HBox>
+    </HBox>
+    
+    <!-- Job Description (truncated) -->
+    <Text fx:id="descriptionText" wrappingWidth="600" 
+          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
+    
+    <!-- Skills Tags -->
+    <FlowPane fx:id="skillsContainer" hgap="10" vgap="5">
+        <!-- Skill tags will be added here -->
+    </FlowPane>
+    
+    <!-- Posted Date and Apply Button -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <HBox alignment="CENTER_LEFT" spacing="5">
+            <FontIcon iconLiteral="fas-calendar-alt" />
+            <Text fx:id="postedDateText" styleClass="job-posted-date" text="Posted 3 days ago" />
+        </HBox>
+        
+        <Region HBox.hgrow="ALWAYS" />
+        
+        <Button fx:id="viewDetailsButton" text="View Details" styleClass="button-outlined" />
+        <Button fx:id="applyButton" text="Apply Now" />
+    </HBox>
+</VBox>

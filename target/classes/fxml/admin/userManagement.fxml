@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane styleClass="dashboard-content" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jobportal.controllers.admin.UserManagementController">
+    
+    <!-- Top Header -->
+    <top>
+        <VBox spacing="15" styleClass="dashboard-card">
+            <padding>
+                <Insets top="15" right="20" bottom="15" left="20" />
+            </padding>
+            
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Text styleClass="label-header" text="User Management" />
+                <Region HBox.hgrow="ALWAYS" />
+                
+                <!-- Search and Filter -->
+                <HBox spacing="10" alignment="CENTER" HBox.hgrow="ALWAYS" maxWidth="600">
+                    <TextField fx:id="searchField" promptText="Search by name, email, or username" HBox.hgrow="ALWAYS" />
+                    <ComboBox fx:id="roleFilterComboBox" promptText="Filter by Role" />
+                    <Button fx:id="searchButton" styleClass="button-secondary" onAction="#onSearchButtonClick">
+                        <graphic>
+                            <FontIcon iconLiteral="fas-search" />
+                        </graphic>
+                    </Button>
+                </HBox>
+                
+                <Button text="Add User" onAction="#onAddUserClick" styleClass="button-secondary">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-user-plus" />
+                    </graphic>
+                </Button>
+            </HBox>
+            
+            <Text styleClass="label" text="View and manage all users on the platform" />
+        </VBox>
+    </top>
+    
+    <!-- Users Table -->
+    <center>
+        <VBox spacing="15" styleClass="dashboard-card">
+            <TableView fx:id="usersTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="userIdColumn" text="ID" prefWidth="60" />
+                    <TableColumn fx:id="usernameColumn" text="Username" prefWidth="120" />
+                    <TableColumn fx:id="fullNameColumn" text="Full Name" prefWidth="150" />
+                    <TableColumn fx:id="emailColumn" text="Email" prefWidth="200" />
+                    <TableColumn fx:id="phoneColumn" text="Phone" prefWidth="120" />
+                    <TableColumn fx:id="roleColumn" text="Role" prefWidth="100" />
+                    <TableColumn fx:id="registrationDateColumn" text="Registration Date" prefWidth="150" />
+                    <TableColumn fx:id="lastLoginColumn" text="Last Login" prefWidth="150" />
+                    <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="120" />
+                </columns>
+            </TableView>
+            
+            <!-- Pagination -->
+            <HBox alignment="CENTER">
+                <Pagination fx:id="usersPagination" pageCount="10" />
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

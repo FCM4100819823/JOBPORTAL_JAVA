@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane styleClass="dashboard-content" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jobportal.controllers.employer.ApplicationsController">
+    
+    <!-- Top Header -->
+    <top>
+        <VBox spacing="15" styleClass="dashboard-card">
+            <padding>
+                <Insets top="15" right="20" bottom="15" left="20" />
+            </padding>
+            
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Text styleClass="label-header" text="Applications" />
+                <Region HBox.hgrow="ALWAYS" />
+                
+                <!-- Filter Options -->
+                <ComboBox fx:id="jobFilterComboBox" promptText="Filter by Job" />
+                <ComboBox fx:id="statusFilterComboBox" promptText="Filter by Status" />
+            </HBox>
+            
+            <Text styleClass="label" text="Manage and review applications from candidates" />
+            
+            <!-- Stats Row -->
+            <HBox spacing="30" fx:id="statsContainer">
+                <VBox styleClass="quick-info-item" alignment="CENTER_LEFT">
+                    <Text fx:id="totalApplicationsText" styleClass="stats-value" text="0" />
+                    <Text styleClass="quick-info-label" text="Total Applications" />
+                </VBox>
+                
+                <VBox styleClass="quick-info-item" alignment="CENTER_LEFT">
+                    <Text fx:id="newApplicationsText" styleClass="stats-value" text="0" />
+                    <Text styleClass="quick-info-label" text="New" />
+                </VBox>
+                
+                <VBox styleClass="quick-info-item" alignment="CENTER_LEFT">
+                    <Text fx:id="reviewingText" styleClass="stats-value" text="0" />
+                    <Text styleClass="quick-info-label" text="Under Review" />
+                </VBox>
+                
+                <VBox styleClass="quick-info-item" alignment="CENTER_LEFT">
+                    <Text fx:id="interviewingText" styleClass="stats-value" text="0" />
+                    <Text styleClass="quick-info-label" text="Interviewing" />
+                </VBox>
+                
+                <VBox styleClass="quick-info-item" alignment="CENTER_LEFT">
+                    <Text fx:id="offersText" styleClass="stats-value" text="0" />
+                    <Text styleClass="quick-info-label" text="Offers" />
+                </VBox>
+                
+                <VBox styleClass="quick-info-item" alignment="CENTER_LEFT">
+                    <Text fx:id="rejectedText" styleClass="stats-value" text="0" />
+                    <Text styleClass="quick-info-label" text="Rejected" />
+                </VBox>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <!-- Applications List -->
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="transparent-background">
+            <VBox spacing="15" fx:id="applicationsContainer">
+                <padding>
+                    <Insets top="15" right="20" bottom="15" left="20" />
+                </padding>
+                
+                <!-- Loading indicator -->
+                <StackPane fx:id="loadingPane" managed="false" visible="false">
+                    <ProgressIndicator />
+                </StackPane>
+                
+                <!-- Empty state -->
+                <VBox fx:id="emptyStatePane" alignment="CENTER" spacing="15" managed="false" visible="false">
+                    <padding>
+                        <Insets top="40" bottom="40" />
+                    </padding>
+                    <FontIcon iconLiteral="fas-users" iconSize="48" />
+                    <Text styleClass="label-subheader" text="No applications yet" />
+                    <Text text="You haven't received any applications yet. Once candidates apply for your jobs, their applications will appear here." textAlignment="CENTER" wrappingWidth="500" />
+                    <Button text="Post New Job" onAction="#onPostNewJobClick" styleClass="button-secondary" />
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

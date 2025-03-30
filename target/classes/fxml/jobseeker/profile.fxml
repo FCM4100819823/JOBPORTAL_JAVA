@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<ScrollPane fitToWidth="true" styleClass="dashboard-content" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jobportal.controllers.jobseeker.ProfileController">
+    <VBox spacing="20">
+        <padding>
+            <Insets top="10" right="20" bottom="20" left="20" />
+        </padding>
+        
+        <!-- Profile Header -->
+        <HBox spacing="20" styleClass="dashboard-card" alignment="CENTER_LEFT">
+            <StackPane styleClass="profile-image-container">
+                <FontIcon fx:id="profileIconDefault" iconLiteral="fas-user" iconSize="40" />
+                <ImageView fx:id="profileImageView" fitWidth="100" fitHeight="100" preserveRatio="true" visible="false" />
+                <Button fx:id="uploadPhotoButton" styleClass="upload-photo-button" onAction="#onUploadPhotoClick">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-camera" />
+                    </graphic>
+                </Button>
+            </StackPane>
+            
+            <VBox spacing="5">
+                <Text fx:id="fullNameText" styleClass="profile-name" text="John Doe" />
+                <Text fx:id="emailText" styleClass="profile-email" text="john.doe@example.com" />
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <ProgressBar fx:id="profileCompletionBar" progress="0.7" prefWidth="200" />
+                    <Text fx:id="profileCompletionText" text="Profile 70% Complete" />
+                </HBox>
+            </VBox>
+        </HBox>
+        
+        <!-- Profile Form -->
+        <VBox styleClass="dashboard-card" spacing="20">
+            <Text styleClass="section-header" text="Personal Information" />
+            
+            <Text fx:id="errorText" styleClass="error-text" visible="false" />
+            <Text fx:id="successText" styleClass="success-text" visible="false" />
+            
+            <GridPane hgap="20" vgap="15">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50" />
+                    <ColumnConstraints percentWidth="50" />
+                </columnConstraints>
+                
+                <!-- Full Name -->
+                <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label text="Full Name *" />
+                    <TextField fx:id="fullNameField" promptText="Enter your full name" />
+                </VBox>
+                
+                <!-- Username (read-only) -->
+                <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label text="Username" />
+                    <TextField fx:id="usernameField" promptText="Your username" disable="true" />
+                </VBox>
+                
+                <!-- Email -->
+                <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Label text="Email Address *" />
+                    <TextField fx:id="emailField" promptText="Enter your email address" />
+                </VBox>
+                
+                <!-- Phone -->
+                <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label text="Phone Number" />
+                    <TextField fx:id="phoneField" promptText="Enter your phone number" />
+                </VBox>
+                
+                <!-- Location -->
+                <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                    <Label text="Location" />
+                    <TextField fx:id="locationField" promptText="City, State/Province, Country" />
+                </VBox>
+                
+                <!-- Headline -->
+                <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <Label text="Professional Headline" />
+                    <TextField fx:id="headlineField" promptText="e.g., Software Engineer at Tech Company" />
+                </VBox>
+                
+                <!-- Bio -->
+                <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2">
+                    <Label text="Bio" />
+                    <TextArea fx:id="bioField" promptText="Tell employers about yourself" wrapText="true" prefRowCount="4" />
+                </VBox>
+            </GridPane>
+            
+            <!-- Submit Button -->
+            <HBox alignment="CENTER_RIGHT">
+                <Button fx:id="saveProfileButton" text="Save Changes" onAction="#onSaveProfileClick" styleClass="button-secondary" />
+            </HBox>
+        </VBox>
+        
+        <!-- Resume Section -->
+        <VBox styleClass="dashboard-card" spacing="20">
+            <Text styleClass="section-header" text="Resume / CV" />
+            
+            <HBox spacing="15" fx:id="noResumeBox" alignment="CENTER_LEFT">
+                <FontIcon iconLiteral="fas-file-upload" iconSize="24" />
+                <VBox spacing="5">
+                    <Text text="No resume uploaded yet" />
+                    <Text styleClass="form-info-text" text="Upload your resume to make applying for jobs easier" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button text="Upload Resume" onAction="#onUploadResumeClick" styleClass="button-outlined" />
+            </HBox>
+            
+            <HBox spacing="15" fx:id="resumeBox" alignment="CENTER_LEFT" visible="false" managed="false">
+                <FontIcon iconLiteral="fas-file-pdf" iconSize="24" />
+                <VBox spacing="5">
+                    <Text fx:id="resumeNameText" text="resume_john_doe.pdf" />
+                    <Text fx:id="resumeUploadDateText" styleClass="form-info-text" text="Uploaded on July 15, 2023" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button text="View" onAction="#onViewResumeClick" styleClass="button-outlined" />
+                <Button text="Replace" onAction="#onReplaceResumeClick" styleClass="button-outlined" />
+            </HBox>
+        </VBox>
+        
+        <!-- Skills Section -->
+        <VBox styleClass="dashboard-card" spacing="20">
+            <Text styleClass="section-header" text="Skills" />
+            
+            <FlowPane fx:id="skillsContainer" hgap="10" vgap="10">
+                <!-- Skills will be added here dynamically -->
+            </FlowPane>
+            
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="newSkillField" promptText="Add a skill" HBox.hgrow="ALWAYS" />
+                <Button text="Add" onAction="#onAddSkillClick" styleClass="button-outlined" />
+            </HBox>
+        </VBox>
+        
+        <!-- Education Section -->
+        <VBox styleClass="dashboard-card" spacing="20">
+            <HBox alignment="CENTER_LEFT">
+                <Text styleClass="section-header" text="Education" HBox.hgrow="ALWAYS" />
+                <Button text="Add Education" onAction="#onAddEducationClick" styleClass="button-outlined" />
+            </HBox>
+            
+            <VBox fx:id="educationContainer" spacing="15">
+                <!-- Education items will be added here dynamically -->
+                <Text fx:id="noEducationText" text="No education history added yet" />
+            </VBox>
+        </VBox>
+        
+        <!-- Experience Section -->
+        <VBox styleClass="dashboard-card" spacing="20">
+            <HBox alignment="CENTER_LEFT">
+                <Text styleClass="section-header" text="Work Experience" HBox.hgrow="ALWAYS" />
+                <Button text="Add Experience" onAction="#onAddExperienceClick" styleClass="button-outlined" />
+            </HBox>
+            
+            <VBox fx:id="experienceContainer" spacing="15">
+                <!-- Experience items will be added here dynamically -->
+                <Text fx:id="noExperienceText" text="No work experience added yet" />
+            </VBox>
+        </VBox>
+    </VBox>
+</ScrollPane>

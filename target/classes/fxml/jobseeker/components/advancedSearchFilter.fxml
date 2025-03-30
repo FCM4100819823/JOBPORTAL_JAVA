@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox spacing="15" styleClass="filter-panel" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15" />
+    </padding>
+    
+    <!-- Basic Search -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="Search by keyword, job title, or company" HBox.hgrow="ALWAYS" />
+        <Button fx:id="searchButton" styleClass="button-secondary">
+            <graphic>
+                <FontIcon iconLiteral="fas-search" />
+            </graphic>
+        </Button>
+    </HBox>
+    
+    <!-- Location Filter -->
+    <VBox spacing="5">
+        <Text styleClass="filter-label" text="Location" />
+        <HBox spacing="10">
+            <TextField fx:id="locationField" promptText="City, state, or remote" HBox.hgrow="ALWAYS" />
+            <CheckBox fx:id="remoteCheckbox" text="Remote only" />
+        </HBox>
+    </VBox>
+    
+    <!-- Job Type & Experience Level -->
+    <HBox spacing="15">
+        <VBox spacing="5" HBox.hgrow="ALWAYS">
+            <Text styleClass="filter-label" text="Job Type" />
+            <ComboBox fx:id="jobTypeComboBox" promptText="Select job type" maxWidth="Infinity" />
+        </VBox>
+        
+        <VBox spacing="5" HBox.hgrow="ALWAYS">
+            <Text styleClass="filter-label" text="Experience Level" />
+            <ComboBox fx:id="experienceLevelComboBox" promptText="Select experience level" maxWidth="Infinity" />
+        </VBox>
+    </HBox>
+    
+    <!-- Salary Range -->
+    <VBox spacing="5">
+        <Text styleClass="filter-label" text="Salary Range" />
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Slider fx:id="salarySlider" min="0" max="250000" showTickLabels="true" showTickMarks="true" 
+                    majorTickUnit="50000" minorTickCount="4" snapToTicks="true" HBox.hgrow="ALWAYS" />
+            <Text fx:id="salaryRangeText" text="$0 - $250,000+" />
+        </HBox>
+    </VBox>
+    
+    <!-- Date Posted -->
+    <VBox spacing="5">
+        <Text styleClass="filter-label" text="Date Posted" />
+        <HBox spacing="10">
+            <RadioButton fx:id="anyTimeRadio" text="Any time" selected="true" toggleGroup="$datePostedGroup" />
+            <RadioButton fx:id="pastDayRadio" text="Past 24 hours" toggleGroup="$datePostedGroup" />
+            <RadioButton fx:id="pastWeekRadio" text="Past week" toggleGroup="$datePostedGroup" />
+            <RadioButton fx:id="pastMonthRadio" text="Past month" toggleGroup="$datePostedGroup" />
+            <fx:define>
+                <ToggleGroup fx:id="datePostedGroup" />
+            </fx:define>
+        </HBox>
+    </VBox>
+    
+    <!-- Skills Filter -->
+    <VBox spacing="5">
+        <Text styleClass="filter-label" text="Skills" />
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <TextField fx:id="skillField" promptText="Add a skill (e.g., Java, Marketing)" HBox.hgrow="ALWAYS" />
+            <Button fx:id="addSkillButton" text="Add" styleClass="button-outlined" />
+        </HBox>
+        <FlowPane fx:id="skillsContainer" hgap="10" vgap="10" />
+    </VBox>
+    
+    <!-- Action Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="clearFiltersButton" text="Clear All Filters" styleClass="button-outlined" />
+        <Button fx:id="applyFiltersButton" text="Apply Filters" styleClass="button-secondary" />
+    </HBox>
+</VBox>

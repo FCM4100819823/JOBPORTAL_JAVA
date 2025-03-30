@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<VBox spacing="15" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jobportal.controllers.admin.UserDialogController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+    
+    <Text styleClass="dialog-header" text="User Information" fx:id="dialogTitle" />
+    
+    <GridPane hgap="15" vgap="15">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="50" />
+            <ColumnConstraints percentWidth="50" />
+        </columnConstraints>
+        
+        <!-- Username -->
+        <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Label text="Username *" />
+            <TextField fx:id="usernameField" promptText="Enter username" />
+        </VBox>
+        
+        <!-- Email -->
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Label text="Email *" />
+            <TextField fx:id="emailField" promptText="Enter email address" />
+        </VBox>
+        
+        <!-- Full Name -->
+        <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <Label text="Full Name *" />
+            <TextField fx:id="fullNameField" promptText="Enter full name" />
+        </VBox>
+        
+        <!-- Phone -->
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label text="Phone" />
+            <TextField fx:id="phoneField" promptText="Enter phone number" />
+        </VBox>
+        
+        <!-- Role -->
+        <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="2">
+            <Label text="Role *" />
+            <ComboBox fx:id="roleComboBox" promptText="Select role" maxWidth="Infinity" />
+        </VBox>
+        
+        <!-- Location -->
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label text="Location" />
+            <TextField fx:id="locationField" promptText="Enter location" />
+        </VBox>
+        
+        <!-- Password -->
+        <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="3">
+            <Label text="Password *" />
+            <PasswordField fx:id="passwordField" promptText="Enter password" />
+        </VBox>
+        
+        <!-- Confirm Password -->
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label text="Confirm Password *" />
+            <PasswordField fx:id="confirmPasswordField" promptText="Confirm password" />
+        </VBox>
+    </GridPane>
+    
+    <!-- Error message -->
+    <Text fx:id="errorText" styleClass="error-text" visible="false" />
+</VBox>

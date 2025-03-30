@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<fx:root type="BorderPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+         fx:controller="com.jobportal.controllers.jobseeker.JobSeekerDashboardController">
+    <fx:include source="../common/dashboardLayout.fxml" />
+</fx:root>

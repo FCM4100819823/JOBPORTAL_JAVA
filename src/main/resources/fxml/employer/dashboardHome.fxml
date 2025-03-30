@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<ScrollPane fitToWidth="true" styleClass="dashboard-content" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jobportal.controllers.employer.EmployerHomeController">
+    <VBox spacing="20">
+        <padding>
+            <Insets top="10" right="10" bottom="20" left="10" />
+        </padding>
+        
+        <!-- Welcome Section -->
+        <HBox styleClass="dashboard-card">
+            <VBox spacing="5">
+                <Text styleClass="label-header" text="Welcome to your Employer Dashboard" />
+                <Text fx:id="welcomeMessage" text="Here's an overview of your recruitment activities" />
+            </VBox>
+        </HBox>
+        
+        <!-- Quick Actions -->
+        <HBox spacing="15">
+            <Button text="Post a New Job" onAction="#onPostJobClick" styleClass="button-secondary">
+                <graphic>
+                    <FontIcon iconLiteral="fas-plus-circle" />
+                </graphic>
+            </Button>
+            
+            <Button text="View Applications" onAction="#onViewApplicationsClick" styleClass="button-outlined">
+                <graphic>
+                    <FontIcon iconLiteral="fas-users" />
+                </graphic>
+            </Button>
+            
+            <Button text="Manage Jobs" onAction="#onManageJobsClick" styleClass="button-outlined">
+                <graphic>
+                    <FontIcon iconLiteral="fas-briefcase" />
+                </graphic>
+            </Button>
+        </HBox>
+        
+        <!-- Stats Row -->
+        <GridPane hgap="15" vgap="15">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="33.33" />
+                <ColumnConstraints percentWidth="33.33" />
+                <ColumnConstraints percentWidth="33.33" />
+            </columnConstraints>
+            
+            <!-- Active Jobs Card -->
+            <VBox styleClass="dashboard-card" GridPane.columnIndex="0">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <StackPane styleClass="stats-icon-container">
+                        <FontIcon iconLiteral="fas-briefcase" iconSize="20" />
+                    </StackPane>
+                    <VBox>
+                        <Text fx:id="activeJobsCount" styleClass="stats-value" text="0" />
+                        <Text styleClass="stats-label" text="Active Jobs" />
+                    </VBox>
+                </HBox>
+            </VBox>
+            
+            <!-- Total Applications Card -->
+            <VBox styleClass="dashboard-card" GridPane.columnIndex="1">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <StackPane styleClass="stats-icon-container">
+                        <FontIcon iconLiteral="fas-file-alt" iconSize="20" />
+                    </StackPane>
+                    <VBox>
+                        <Text fx:id="totalApplicationsCount" styleClass="stats-value" text="0" />
+                        <Text styleClass="stats-label" text="Total Applications" />
+                    </VBox>
+                </HBox>
+            </VBox>
+            
+            <!-- New Applications Card -->
+            <VBox styleClass="dashboard-card" GridPane.columnIndex="2">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <StackPane styleClass="stats-icon-container">
+                        <FontIcon iconLiteral="fas-bell" iconSize="20" />
+                    </StackPane>
+                    <VBox>
+                        <Text fx:id="newApplicationsCount" styleClass="stats-value" text="0" />
+                        <Text styleClass="stats-label" text="New Applications" />
+                    </VBox>
+                </HBox>
+            </VBox>
+        </GridPane>
+        
+        <!-- Recent Applications Section -->
+        <VBox styleClass="dashboard-card" spacing="15">
+            <HBox alignment="CENTER_LEFT">
+                <Text styleClass="label-subheader" text="Recent Applications" HBox.hgrow="ALWAYS" />
+                <Button text="View All" onAction="#onViewAllApplicationsClick" styleClass="button-outlined" />
+            </HBox>
+            
+            <VBox fx:id="recentApplicationsContainer" spacing="10">
+                <!-- Applications will be added here -->
+                <Label text="No recent applications" fx:id="noApplicationsLabel" />
+            </VBox>
+        </VBox>
+        
+        <!-- Your Jobs Section -->
+        <VBox styleClass="dashboard-card" spacing="15">
+            <HBox alignment="CENTER_LEFT">
+                <Text styleClass="label-subheader" text="Your Active Jobs" HBox.hgrow="ALWAYS" />
+                <Button text="View All" onAction="#onViewAllJobsClick" styleClass="button-outlined" />
+            </HBox>
+            
+            <VBox fx:id="activeJobsContainer" spacing="15">
+                <!-- Jobs will be added here -->
+                <Label text="No active jobs" fx:id="noJobsLabel" />
+            </VBox>
+        </VBox>
+    </VBox>
+</ScrollPane>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane styleClass="dashboard-content" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jobportal.controllers.employer.ManageJobsController">
+    
+    <!-- Top Header -->
+    <top>
+        <VBox spacing="15" styleClass="dashboard-card">
+            <padding>
+                <Insets top="15" right="20" bottom="15" left="20" />
+            </padding>
+            
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Text styleClass="label-header" text="Manage Jobs" />
+                <Region HBox.hgrow="ALWAYS" />
+                
+                <!-- Filter/Sort Options -->
+                <ComboBox fx:id="statusFilterComboBox" promptText="Filter by Status" />
+                <Button text="Post New Job" onAction="#onPostNewJobClick" styleClass="button-secondary">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-plus" />
+                    </graphic>
+                </Button>
+            </HBox>
+            
+            <Text styleClass="label" text="Manage all your posted jobs and track their performance" />
+        </VBox>
+    </top>
+    
+    <!-- Jobs List -->
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="transparent-background">
+            <VBox spacing="15" fx:id="jobsContainer">
+                <padding>
+                    <Insets top="15" right="20" bottom="15" left="20" />
+                </padding>
+                
+                <!-- Loading indicator -->
+                <StackPane fx:id="loadingPane" managed="false" visible="false">
+                    <ProgressIndicator />
+                </StackPane>
+                
+                <!-- Empty state -->
+                <VBox fx:id="emptyStatePane" alignment="CENTER" spacing="15" managed="false" visible="false">
+                    <padding>
+                        <Insets top="40" bottom="40" />
+                    </padding>
+                    <FontIcon iconLiteral="fas-briefcase" iconSize="48" />
+                    <Text styleClass="label-subheader" text="No jobs posted yet" />
+                    <Text text="You haven't posted any jobs yet. Get started by posting your first job opening." textAlignment="CENTER" wrappingWidth="500" />
+                    <Button text="Post New Job" onAction="#onPostNewJobClick" styleClass="button-secondary" />
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

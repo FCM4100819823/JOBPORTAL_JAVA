@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane stylesheets="@../../css/styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <!-- Side Navigation -->
+    <left>
+        <VBox styleClass="sidebar" prefWidth="240" spacing="10">
+            <padding>
+                <Insets top="20" right="10" bottom="20" left="10" />
+            </padding>
+            
+            <!-- User Profile Section -->
+            <VBox alignment="CENTER" spacing="10" styleClass="sidebar-profile">
+                <padding>
+                    <Insets bottom="20" />
+                </padding>
+                
+                <!-- Profile Picture Placeholder -->
+                <StackPane styleClass="profile-picture-container">
+                    <FontIcon iconLiteral="fas-user" iconSize="30" />
+                </StackPane>
+                
+                <Label fx:id="userNameLabel" styleClass="sidebar-username" text="User Name" />
+                <Label fx:id="userRoleLabel" styleClass="sidebar-role" text="Job Seeker" />
+            </VBox>
+            
+            <!-- Navigation Menu -->
+            <VBox spacing="5" VBox.vgrow="ALWAYS" fx:id="navMenuContainer">
+                <!-- Menu items will be added dynamically -->
+            </VBox>
+            
+            <!-- Logout Button -->
+            <Button fx:id="logoutButton" styleClass="sidebar-logout-btn" maxWidth="Infinity" text="Logout" onAction="#handleLogout">
+                <graphic>
+                    <FontIcon iconLiteral="fas-sign-out-alt" />
+                </graphic>
+            </Button>
+        </VBox>
+    </left>
+    
+    <!-- Main Content Area -->
+    <center>
+        <BorderPane>
+            <!-- Top Bar with Title and Search -->
+            <top>
+                <HBox styleClass="dashboard-topbar" alignment="CENTER_LEFT" spacing="20">
+                    <padding>
+                        <Insets top="15" right="20" bottom="15" left="20" />
+                    </padding>
+                    
+                    <Label fx:id="pageTitleLabel" styleClass="dashboard-title" text="Dashboard" />
+                    
+                    <HBox HBox.hgrow="ALWAYS" />
+                    
+                    <!-- Search Box -->
+                    <HBox styleClass="search-box" alignment="CENTER" spacing="10">
+                        <FontIcon iconLiteral="fas-search" />
+                        <TextField fx:id="searchField" promptText="Search..." />
+                    </HBox>
+                    
+                    <!-- Notifications -->
+                    <StackPane styleClass="notification-icon">
+                        <FontIcon iconLiteral="fas-bell" />
+                        <Label fx:id="notificationCountLabel" styleClass="notification-badge" text="0" visible="false" />
+                    </StackPane>
+                </HBox>
+            </top>
+            
+            <!-- Content Area - Will be populated by specific views -->
+            <center>
+                <StackPane fx:id="contentArea">
+                    <!-- Content will be loaded here -->
+                </StackPane>
+            </center>
+        </BorderPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<ScrollPane fitToWidth="true" styleClass="dashboard-content" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jobportal.controllers.jobseeker.DashboardHomeController">
+    <VBox spacing="20">
+        <padding>
+            <Insets top="10" right="10" bottom="20" left="10" />
+        </padding>
+        
+        <!-- Welcome Section -->
+        <HBox styleClass="dashboard-card">
+            <VBox spacing="5">
+                <Text styleClass="label-header" text="Welcome back!" />
+                <Text fx:id="welcomeMessage" text="Here's what's happening with your job search." />
+            </VBox>
+        </HBox>
+        
+        <!-- Stats Row -->
+        <GridPane hgap="15" vgap="15">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="33.33" />
+                <ColumnConstraints percentWidth="33.33" />
+                <ColumnConstraints percentWidth="33.33" />
+            </columnConstraints>
+            
+            <!-- Applied Jobs Card -->
+            <VBox styleClass="dashboard-card" GridPane.columnIndex="0">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <StackPane styleClass="stats-icon-container">
+                        <FontIcon iconLiteral="fas-clipboard-check" iconSize="20" />
+                    </StackPane>
+                    <VBox>
+                        <Text fx:id="appliedJobsCount" styleClass="stats-value" text="0" />
+                        <Text styleClass="stats-label" text="Jobs Applied" />
+                    </VBox>
+                </HBox>
+            </VBox>
+            
+            <!-- Saved Jobs Card -->
+            <VBox styleClass="dashboard-card" GridPane.columnIndex="1">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <StackPane styleClass="stats-icon-container">
+                        <FontIcon iconLiteral="fas-bookmark" iconSize="20" />
+                    </StackPane>
+                    <VBox>
+                        <Text fx:id="savedJobsCount" styleClass="stats-value" text="0" />
+                        <Text styleClass="stats-label" text="Saved Jobs" />
+                    </VBox>
+                </HBox>
+            </VBox>
+            
+            <!-- Profile Completion Card -->
+            <VBox styleClass="dashboard-card" GridPane.columnIndex="2">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <StackPane styleClass="stats-icon-container">
+                        <FontIcon iconLiteral="fas-user-check" iconSize="20" />
+                    </StackPane>
+                    <VBox>
+                        <Text fx:id="profileCompletion" styleClass="stats-value" text="0%" />
+                        <Text styleClass="stats-label" text="Profile Completion" />
+                    </VBox>
+                </HBox>
+            </VBox>
+        </GridPane>
+        
+        <!-- Recent Activity Section -->
+        <VBox styleClass="dashboard-card" spacing="15">
+            <Text styleClass="label-subheader" text="Recent Activity" />
+            
+            <VBox fx:id="recentActivityContainer" spacing="10">
+                <!-- Activity items will be added here -->
+                <Label text="No recent activity" fx:id="noActivityLabel" />
+            </VBox>
+        </VBox>
+        
+        <!-- Recommended Jobs Section -->
+        <VBox styleClass="dashboard-card" spacing="15">
+            <Text styleClass="label-subheader" text="Recommended Jobs" />
+            
+            <VBox fx:id="recommendedJobsContainer" spacing="15">
+                <!-- Job cards will be added here -->
+                <Label text="No recommended jobs yet" fx:id="noRecommendedLabel" />
+            </VBox>
+            
+            <Button text="Browse All Jobs" styleClass="button-outlined" onAction="#onBrowseAllJobsClick" />
+        </VBox>
+    </VBox>
+</ScrollPane>
