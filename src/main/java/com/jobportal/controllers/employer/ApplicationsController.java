@@ -341,112 +341,118 @@ public class ApplicationsController implements Initializable {
         Hyperlink viewResumeLink = (Hyperlink) card.lookup("#viewResumeLink");
         viewResumeLink.setOnAction(e -> openResume(application.getResumePath()));
         
-        // Find the context menu in the card
-        ContextMenu contextMenu = null;enuItem");
-        for (Node node : card.lookupAll(".context-menu")) {scheduleInterviewMenuItem");
-            if (node instanceof ContextMenu) {tem");
-                contextMenu = (ContextMenu) node;tem = (MenuItem) card.lookup("#rejectMenuItem");
-                break;
-            }tion, JobApplication.Status.UNDER_REVIEW));
-        }tion, JobApplication.Status.INTERVIEW_SCHEDULED));
-        tOnAction(e -> updateApplicationStatus(application, JobApplication.Status.OFFER_EXTENDED));
-        // If we can't find the context menu, create onetion(e -> updateApplicationStatus(application, JobApplication.Status.REJECTED));
-        if (contextMenu == null) {
-            contextMenu = new ContextMenu();
-            tton = (Button) card.lookup("#viewDetailsButton");
-            MenuItem underReviewMenuItem = new MenuItem("Mark as Under Review");nAction(e -> viewApplicationDetails(application));
-            MenuItem scheduleInterviewMenuItem = new MenuItem("Schedule Interview");
-            MenuItem makeOfferMenuItem = new MenuItem("Make Offer");
-            MenuItem rejectMenuItem = new MenuItem("Reject Application");
-            
-            contextMenu.getItems().addAll(ate void openResume(String resumePath) {
-                    underReviewMenuItem,
-                    scheduleInterviewMenuItem,
-                    makeOfferMenuItem,
-                    rejectMenuItem
-            );}
-            
-            // Attach the context menu to a button in the card
-            Button actionsButton = (Button) card.lookup("#actionsButton");
-            if (actionsButton != null) {    if (!resumeFile.exists()) {
-                actionsButton.setOnMouseClicked(e -> contextMenu.show(actionsButton, e.getScreenX(), e.getScreenY()));Alert(Alert.AlertType.ERROR, "Error", "Resume Not Found", 
-            }                   "The resume file could not be found at the specified location.");
-                        return;
-            underReviewMenuItem.setOnAction(e -> updateApplicationStatus(application, JobApplication.Status.UNDER_REVIEW));
-            scheduleInterviewMenuItem.setOnAction(e -> updateApplicationStatus(application, JobApplication.Status.INTERVIEW_SCHEDULED));
-            makeOfferMenuItem.setOnAction(e -> updateApplicationStatus(application, JobApplication.Status.OFFER_EXTENDED));
-            rejectMenuItem.setOnAction(e -> updateApplicationStatus(application, JobApplication.Status.REJECTED));
-        }ception e) {
-           showAlert(Alert.AlertType.ERROR, "Error", "Failed to Open Resume", 
-        // Set up view details button            "An error occurred while trying to open the resume file: " + e.getMessage());
+        // Find or create status update menu
+        Button actionsButton = (Button) card.lookup("#actionsButton");
+        
+        // Create context menu programmatically since lookup is failing
+        ContextMenu contextMenu = new ContextMenu();
+        
+        MenuItem underReviewMenuItem = new MenuItem("Mark as Under Review");
+        MenuItem scheduleInterviewMenuItem = new MenuItem("Schedule Interview");
+        MenuItem makeOfferMenuItem = new MenuItem("Make Offer");
+        MenuItem rejectMenuItem = new MenuItem("Reject Application");
+        
+        // Add items to menu
+        contextMenu.getItems().addAll(
+                underReviewMenuItem,
+                scheduleInterviewMenuItem,
+                makeOfferMenuItem,
+                rejectMenuItem
+        );
+        
+        // Set actions for menu items
+        underReviewMenuItem.setOnAction(e -> updateApplicationStatus(application, JobApplication.Status.UNDER_REVIEW));
+        scheduleInterviewMenuItem.setOnAction(e -> updateApplicationStatus(application, JobApplication.Status.INTERVIEW_SCHEDULED));
+        makeOfferMenuItem.setOnAction(e -> updateApplicationStatus(application, JobApplication.Status.OFFER_EXTENDED));
+        rejectMenuItem.setOnAction(e -> updateApplicationStatus(application, JobApplication.Status.REJECTED));
+        
+        // Attach context menu to actions button
+        if (actionsButton != null) {
+            actionsButton.setOnMouseClicked(e -> contextMenu.show(actionsButton, e.getScreenX(), e.getScreenY()));
+        }
+        
+        // Set up view details button
         Button viewDetailsButton = (Button) card.lookup("#viewDetailsButton");
         viewDetailsButton.setOnAction(e -> viewApplicationDetails(application));
         
-        return card;ation.Status newStatus) {
+        return card;
     }
-     = applicationService.updateApplicationStatus(application.getId(), newStatus);
+    
     private void openResume(String resumePath) {
-        if (resumePath == null || resumePath.isEmpty()) {success) {
+        if (resumePath == null || resumePath.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Error", "Resume Not Found", 
                     "The resume file could not be found.");
             return;
         }
         
-        try {           "Application status has been updated successfully.");
-            File resumeFile = new File(resumePath);   } else {
-            if (!resumeFile.exists()) {        // Show error message
+        try {
+            File resumeFile = new File(resumePath);
+            if (!resumeFile.exists()) {
                 showAlert(Alert.AlertType.ERROR, "Error", "Resume Not Found", 
-                        "The resume file could not be found at the specified location.");ed while updating the application status. Please try again.");
+                        "The resume file could not be found at the specified location.");
                 return;
             }
             
-            // Open the file with the default system applicationn application) {
+            // Open the file with the default system application
             java.awt.Desktop.getDesktop().open(resumeFile);
-        } catch (Exception e) {// Load application detail view
-            showAlert(Alert.AlertType.ERROR, "Error", "Failed to Open Resume",  FXMLLoader(App.class.getResource("/fxml/employer/applicationDetail.fxml"));
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Failed to Open Resume", 
                     "An error occurred while trying to open the resume file: " + e.getMessage());
         }
-    }et the controller and initialize it
-    roller controller = loader.getController();
+    }
+    
     private void updateApplicationStatus(JobApplication application, JobApplication.Status newStatus) {
         // Update application status
-        boolean success = applicationService.updateApplicationStatus(application.getId(), newStatus);   controller.loadApplication(application.getId());
-               
-        if (success) {        // Display the detail view
+        boolean success = applicationService.updateApplicationStatus(application.getId(), newStatus);
+        
+        if (success) {
             // Reload applications to reflect changes
-            loadApplicationData();arentController.contentArea.getChildren().add(detailView);
+            loadApplicationData();
             
             // Show success message
-            showAlert(Alert.AlertType.INFORMATION, "Success", "Status Updated",  "Error", "Navigation Error", 
-                    "Application status has been updated successfully.");        "An error occurred while trying to view application details.");
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Status Updated", 
+                    "Application status has been updated successfully.");
         } else {
             // Show error message
             showAlert(Alert.AlertType.ERROR, "Error", "Failed to Update Status", 
                     "An error occurred while updating the application status. Please try again.");
         }
-    }ployerDashboardController) parentController).loadPostJob();
+    }
     
     private void viewApplicationDetails(JobApplication application) {
-        try { {
-            // Load application detail view {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/employer/applicationDetail.fxml"));JobApplication.Status.SUBMITTED;
+        try {
+            // Load application detail view
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/employer/applicationDetail.fxml"));
             Node detailView = loader.load();
-            ;
-            // Get the controller and initialize it   case "Offer Extended" -> JobApplication.Status.OFFER_EXTENDED;
-            ApplicationDetailController controller = loader.getController();       case "Rejected" -> JobApplication.Status.REJECTED;
-            controller.setParentController(parentController);        default -> null;
-            controller.setApplicationsController(this);;
+            
+            // Get the controller and initialize it
+            ApplicationDetailController controller = loader.getController();
+            controller.setParentController(parentController);
+            controller.setApplicationsController(this);
             controller.loadApplication(application.getId());
             
-            // Display the detail viewrivate void showAlert(Alert.AlertType type, String title, String header, String content) {
-            parentController.contentArea.getChildren().clear();    Alert alert = new Alert(type);
+            // Display the detail view
+            parentController.contentArea.getChildren().clear();
             parentController.contentArea.getChildren().add(detailView);
-        } catch (IOException e) {;
+        } catch (IOException e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "Navigation Error", 
                     "An error occurred while trying to view application details.");
         }
-    }        @FXML    private void onPostNewJobClick() {        ((EmployerDashboardController) parentController).loadPostJob();    }        private JobApplication.Status convertToStatusEnum(String statusStr) {        return switch (statusStr) {            case "Submitted" -> JobApplication.Status.SUBMITTED;            case "Under Review" -> JobApplication.Status.UNDER_REVIEW;            case "Interview Scheduled" -> JobApplication.Status.INTERVIEW_SCHEDULED;            case "Offer Extended" -> JobApplication.Status.OFFER_EXTENDED;            case "Rejected" -> JobApplication.Status.REJECTED;
+    }
+    
+    @FXML
+    private void onPostNewJobClick() {
+        ((EmployerDashboardController) parentController).loadPostJob();
+    }
+    
+    private JobApplication.Status convertToStatusEnum(String statusStr) {
+        return switch (statusStr) {
+            case "Submitted" -> JobApplication.Status.SUBMITTED;
+            case "Under Review" -> JobApplication.Status.UNDER_REVIEW;
+            case "Interview Scheduled" -> JobApplication.Status.INTERVIEW_SCHEDULED;
+            case "Offer Extended" -> JobApplication.Status.OFFER_EXTENDED;
+            case "Rejected" -> JobApplication.Status.REJECTED;
             default -> null;
         };
     }

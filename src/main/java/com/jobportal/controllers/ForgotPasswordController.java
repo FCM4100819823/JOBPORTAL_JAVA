@@ -84,7 +84,6 @@ public class ForgotPasswordController implements Initializable {
         }
         
         // Check if email exists in the system
-        // Change this line to use isEmailTaken instead of emailExists
         if (!authService.isEmailTaken(userEmail)) {
             showError("No account found with this email address");
             return;
@@ -93,6 +92,11 @@ public class ForgotPasswordController implements Initializable {
         try {
             // Get the user object for later use
             userToReset = authService.findUserByEmail(userEmail);
+            
+            if (userToReset == null) {
+                showError("Error finding user account. Please try again.");
+                return;
+            }
             
             // Generate and send verification code
             verificationCode = emailService.sendPasswordResetCode(userEmail);

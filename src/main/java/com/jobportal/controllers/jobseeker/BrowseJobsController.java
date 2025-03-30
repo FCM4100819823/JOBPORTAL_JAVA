@@ -422,7 +422,8 @@ public class BrowseJobsController implements Initializable {
         Label label = new Label(key + ": " + value);
         Button removeButton = new Button();
         removeButton.getStyleClass().add("chip-remove-button");
-        removeButton.setGraphic(new FontIcon("fas-times"));
+        FontIcon icon = new FontIcon("fas-times");
+        removeButton.setGraphic(icon);
         removeButton.setOnAction(e -> {
             // Remove this filter and update search
             removeFilter(key, value);

@@ -98,38 +98,25 @@ public class AdvancedSearchFilterController implements Initializable {
         experienceLevelComboBox.getItems().addAll(jobService.getAllExperienceLevels());
         
         // Configure salary slider
-        setupSalarySlider();
+        String currencySymbol = "$";
         
-        salarySlider.valueProperty().addListener((obs, oldVal, newVal) -> {
-            int value = newVal.intValue();
-            salaryRangeText.setText("$" + formatSalary(value) + "+");
-        });
-    }
-    
-    private void setupSalarySlider() {
-        // Create custom string converter for salary values
         salarySlider.setLabelFormatter(new StringConverter<Double>() {
             @Override
             public String toString(Double value) {
-                if (value == null) {
-                    return "";
-                }
-                return "$" + String.format("%,.0f", value);
+                if (value == null) return "$0";
+                if (value == 250000) return "$250k+";
+                return "$" + (int)(value/1000) + "k";
             }
             
             @Override
             public Double fromString(String string) {
-                if (string == null || string.isEmpty()) {
-                    return null;
-                }
-                try {
-                    // Remove currency symbol and commas
-                    string = string.replace("$", "").replaceAll("[,]", "");
-                    return Double.parseDouble(string);
-                } catch (NumberFormatException e) {
-                    return null;
-                }
+                return 0.0; // Not needed for our purpose
             }
+        });
+        
+        salarySlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            int value = newVal.intValue();
+            salaryRangeText.setText("$" + formatSalary(value) + "+");
         });
     }
     
